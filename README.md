@@ -29,6 +29,10 @@
 | area_id            | integer    | null: false                    |
 | delivery_date_id   | integer    | null: false                    |
 | item_name          | string     | null: false                    |
+| price              | integer    | null: false                    |
+| explanation        | text       | null: false                    |
+| user               | references | null: false, foreign_key: true |
+
 
 ### Association
 
@@ -44,13 +48,12 @@
 | address           | string     | null: false                    |
 | building          | string     |                                |
 | phone_number      | string     | null: false                    |
-| user              | references | null: false, foreign_key: true |
-| item              | references | null: false, foreign_key: true |
+| area_id           | integer    | null: false                    |
+| shopping          | references | null: false, foreign_key: true |
+
 
 ### Association
 
-- belongs_to :item
-- belongs_to :user
 - belongs_to :shopping
 
 
