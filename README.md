@@ -1,55 +1,60 @@
-# テーブル設計#あとで変える
+# テーブル設計
 
 ## users テーブル
 
-| Column             | Type   | Options     |
-| ------------------ | ------ | ----------- |
-| name               | string | null: false |
-| email              | string | null: false |
-| encrypted_password | string | null: false |
-| nickname               | string | null: false |
-| birthday               | string | null: false |
+| Column                | Type    | Options     |
+| --------------------- | ------- | ----------- |
+| nickname              | string  | null: false |
+| last_name_kanji       | string  | null: false |
+| first_name_kanji      | string  | null: false |
+| last_name_kana        | string  | null: false |
+| first_name_kanji      | string  | null: false |
+| email                 | string  | null: false |
+| encrypted_password    | string  | null: false |
+| year_birth            | integer | null: false |
+| month_birth           | integer | null: false |
+| date_birth            | integer | null: false |
 
 
 ### Association
 
-- has_many :room_users
-- has_many :rooms, through: :room_users
-- has_many :messages
+- has_many :items
+- has_many :shoppings
 
-## rooms テーブル
+## items テーブル
 
-| Column | Type   | Options     |
-| ------ | ------ | ----------- |
-| name   | string | null: false |
-
-### Association
-
-- has_many :room_users
-- has_many :users, through: :room_users
-- has_many :messages
-
-## room_users テーブル
-
-| Column | Type       | Options                        |
-| ------ | ---------- | ------------------------------ |
-| user   | references | null: false, foreign_key: true |
-| room   | references | null: false, foreign_key: true |
+| Column          | Type       | Options                        |
+| --------------- | ---------- | ------------------------------ |
+| category        | string     | null: false                    |
+| condition       | string     | null: false                    |
+| shopping_fee    | string     | null: false                    |
+| area            | string     | null: false                    |
+| shopping_fee    | boolean    | null: false                    |
+| item_name       | string     | null: false                    |
+| price           | integer    | null: false                    |
+| explanation     | text       | null: false                    |
+| user            | references | null: false, foreign_key: true |
+| shopping        | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :room
+- has_one :shopping
 - belongs_to :user
 
-## messages テーブル
+## shoppings テーブル
 
-| Column  | Type       | Options                        |
-| ------- | ---------- | ------------------------------ |
-| content | string     |                                |
-| user    | references | null: false, foreign_key: true |
-| room    | references | null: false, foreign_key: true |
+| Column            | Type       | Options                        |
+| ----------------- | ---------- | ------------------------------ |
+| post_code         | integer    | null: false                    |
+| prefectures       | string     | null: false                    |
+| municipalities    | string     | null: false                    |
+| address           | string     | null: false                    |
+| building          | string     |                                |
+| phone_number      | string     | null: false                    |
+| user              | references | null: false, foreign_key: true |
+| item              | references | null: false, foreign_key: true |
 
 ### Association
 
-- belongs_to :room
+- belongs_to :item
 - belongs_to :user
