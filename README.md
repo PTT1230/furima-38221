@@ -11,9 +11,7 @@
 | first_name_kanji      | string  | null: false               |
 | email                 | string  | null: false, unique: true |
 | encrypted_password    | string  | null: false               |
-| year_birth            | integer | null: false               |
-| month_birth           | integer | null: false               |
-| date_birth            | integer | null: false               |
+| birthday              | date    | null: false               |
 
 
 ### Association
@@ -23,30 +21,25 @@
 
 ## items テーブル
 
-| Column          | Type       | Options                        |
-| --------------- | ---------- | ------------------------------ |
-| category        | string     | null: false                    |
-| condition       | string     | null: false                    |
-| shopping_fee    | string     | null: false                    |
-| area            | string     | null: false                    |
-| shopping_fee    | boolean    | null: false                    |
-| item_name       | string     | null: false                    |
-| price           | integer    | null: false                    |
-| explanation     | text       | null: false                    |
-| user            | references | null: false, foreign_key: true |
-| shopping        | references | null: false, foreign_key: true |
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| category_id        | integer    | null: false                    |
+| condition_id       | integer    | null: false                    |
+| shopping_fee_id    | integer    | null: false                    |
+| area_id            | integer    | null: false                    |
+| delivery_date_id   | integer    | null: false                    |
+| item_name          | string     | null: false                    |
 
 ### Association
 
 - has_one :shopping
 - belongs_to :user
 
-## shoppings テーブル
+## shopping_addresses テーブル
 
 | Column            | Type       | Options                        |
 | ----------------- | ---------- | ------------------------------ |
-| post_code         | integer    | null: false                    |
-| prefectures       | string     | null: false                    |
+| post_code         | string     | null: false                    |
 | municipalities    | string     | null: false                    |
 | address           | string     | null: false                    |
 | building          | string     |                                |
@@ -56,5 +49,21 @@
 
 ### Association
 
+- belongs_to :item
+- belongs_to :user
+- belongs_to :shopping
+
+
+## shoppings テーブル
+
+| Column             | Type       | Options                        |
+| ------------------ | ---------- | ------------------------------ |
+| user               | references | null: false, foreign_key: true |
+| item               | references | null: false, foreign_key: true |
+| shopping_addresses | references | null: false, foreign_key: true |
+
+### Association
+
+- has_one :shopping_address
 - belongs_to :item
 - belongs_to :user
