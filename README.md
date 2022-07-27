@@ -63,7 +63,6 @@
 | ------------------ | ---------- | ------------------------------ |
 | user               | references | null: false, foreign_key: true |
 | item               | references | null: false, foreign_key: true |
-| shopping_addresses | references | null: false, foreign_key: true |
 
 ### Association
 
