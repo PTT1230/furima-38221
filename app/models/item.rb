@@ -10,7 +10,6 @@ class Item < ApplicationRecord
   has_one_attached :image
 
   validates :category_id,      numericality: { other_than: 1, message: "can't be blank" }
-  validates :category_id,      numericality: { other_than: 1, message: "can't be blank" }
   validates :condition_id,     numericality: { other_than: 1, message: "can't be blank" }
   validates :shopping_fee_id,  numericality: { other_than: 1, message: "can't be blank" }
   validates :area_id,          numericality: { other_than: 1, message: "can't be blank" }
