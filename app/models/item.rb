@@ -18,8 +18,9 @@ class Item < ApplicationRecord
   validates :price,            numericality: { greater_than_or_equal_to: 300, less_than_or_equal_to: 9_999_999 },
                                format: { with: /\A[0-9]+\z/ }
   validates :explanation,      presence: true
-  validates :user,             presence: true
-end
+  validates :image,            presence: true
 
-#presence: true, format: { with: /\A[0-9]+\z/ , /\A[+-]?\d+\z/ }, length: { minimum: 300, maximum: 9999999 }, numericality: {only_integer: true }
-#数値を通貨のフォーマットに変換少数以下は無視number_to_currency :strip_insignificant_zeros	
+  def was_attached?
+    self.image.attached?
+  end
+end
