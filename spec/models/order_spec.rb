@@ -60,6 +60,11 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is invalid")
       end
+      it '電話番号に数値以外が含まれると保存できないこと' do
+        @order.phone_number = '１１１１１１１１１１１'
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone number is invalid")
+      end
       it "tokenが空では登録できないこと" do
         @order.token = nil
         @order.valid?
