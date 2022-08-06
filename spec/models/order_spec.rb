@@ -50,8 +50,13 @@ RSpec.describe Order, type: :model do
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number can't be blank")
       end
-      it '電話番号は、10桁以上11桁以内の半角数値のみ保存可能なこと' do
+      it '電話番号は、9桁以下では登録できないこと' do
         @order.phone_number = 333
+        @order.valid?
+        expect(@order.errors.full_messages).to include("Phone number is invalid")
+      end
+      it '電話番号は、12桁以上では登録できないこと' do
+        @order.phone_number = 333344445555
         @order.valid?
         expect(@order.errors.full_messages).to include("Phone number is invalid")
       end
