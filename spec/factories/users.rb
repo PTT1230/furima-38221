@@ -8,6 +8,6 @@ FactoryBot.define do
     first_name_kana       {'ナマエ'}
     first_name_kanji      {'なまえ'}
     nickname              {'ニックネーム'}
-    email                 {'a@aaaa'}
+    email                 {Faker::Internet.free_email}
   end
 end

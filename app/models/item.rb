@@ -5,7 +5,7 @@ class Item < ApplicationRecord
   belongs_to :shopping_fee
   belongs_to :area
   belongs_to :delivery_date
-  #has_one :shopping
+  has_one    :shopping
   belongs_to :user
   has_one_attached :image
 
